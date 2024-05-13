@@ -1,0 +1,138 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Working Script Hubs For Solara",
+   LoadingTitle = "Nerd Script Hub",
+   LoadingSubtitle = "By Nerd./nerdgupo.",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Nerd Hub."
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "https://discord.gg/YVm3VyWZ8k", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided",
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local MainTab = Window:CreateTab("|Scripts|", 4483362458) -- Title, Image
+local Section = MainTab:CreateSection("Sripts")
+
+Rayfield:Notify({
+   Title = "Notification",
+   Content = "If These Do Not Work Join https://discord.gg/YVm3VyWZ8k And Ping @Nerd.",
+   Duration = 6.5,
+   Image = nil,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Leg Hub(GOOD)",
+   Callback = function()
+   loadstring(game:HttpGet(('https://raw.githubusercontent.com/cris123452/my/main/hub')))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Omen Hub(KINDA GOOD)  (Key sillymezzo)",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/mezzopera/Omen-Hub/main/omen_hub.lua"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Cat Hub(DECENT)",
+   Callback = function()
+   loadstring(game:HttpGet("https://pastebin.com/raw/bZPg2e7G"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Nut Hub(DECENT)",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/Qrto1/working/main/pc"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Aimbot Made By Nerd",
+   Callback = function()
+      _G.aimbot = false
+      local camera = game.Workspace.CurrentCamera
+      local localplayer = game:GetService("Players").LocalPlayer
+      
+      
+      script.Parent.MouseClick:Connect(function()
+         if _G.aimbot == false then
+            _G.aimbot = true
+            script.Parent.TextColor3 = Color3.fromRGB(0,170,0
+            script.Parent.Text = "Aimbot On"
+               function closestplayer()
+                  local dist = math.huge
+                  local target = nil
+                  for i,v in pairs (game:GetService("Players"):GetPlayers()) do
+                     if v ~= localplayer then
+                        if v.Character and v.Character:FindFirstChild("Head") and v.TeamColor ~= localplayer.TeamColor and _G.aimbot then
+                           local magnitude = (v.Character.Head.Position - localplayer.Character.Head.Position).magnitude
+                           if magnitude < dist then
+                              dist = magnitude
+                              target = v
+                           end 
+                        end
+                     end
+                     return target
+                  end
+               end
+         else
+            _G.aimbot = false
+            script.Parent.TextColor3 = Color3.fromRGB(,34,95)
+            script.Parent.Text = "Aimbot Off"
+         end
+            )
+         end
+      end)
+      
+      local settings = {
+         keybind = Enum.UserInputType.MouseButton2
+      }
+      
+      local UIS = Game:GetService("UserInputService")
+      local aiming = false
+      
+      UIS.InputBegan:Connect(function(inp)
+         if inp.UserInputType == settings.keybind then
+            then aiming = true
+         end
+      end)
+      
+      UIS.InputEnded:Connect(function(inp)
+         if inp.UserInputType == settings.keybind then
+            then aiming = false
+          end
+      end)
+      
+      game:GetService("RunService").RenderStepped:Connect(function()
+         if aiming then
+            camera.CFrame = CFrame.new(camera.CFrame.Position,closestplayer().Character.Head.Position)
+         end
+      end)
+   end,
+})
